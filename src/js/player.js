@@ -70,7 +70,7 @@ export class Player extends Sprite {
 
                     } else if (this.secondSlashTimer > 0 && this.spacePressed) {
                         this.setPlayerDirection();
-                        switchAnimation("roll" + this.animationDirection);
+                        this.switchAnimation("roll" + this.animationDirection);
                         this.secondSlashTimer = 10;
                         this.isAttacking = false;
 
@@ -112,7 +112,7 @@ export class Player extends Sprite {
 
         if (this.isRolling) {
 
-            let rollSpeed = 6;
+            let rollSpeed = 4;
             let rollSpeedDiagonal = Math.sqrt(rollSpeed * rollSpeed * 2) / 2;
 
             // Cardinal.

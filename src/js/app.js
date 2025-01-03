@@ -1,4 +1,6 @@
 import { Player } from "./player.js";
+import { VCam } from "./vCam.js";
+import { princessSRC, redSRC, loadPrincessSRC, loadElfSRC } from "./assetsLoader.js";
 
 let canvas;
 let ctx;
@@ -10,6 +12,7 @@ let lastTime = 0;
 let scale = 1;
 
 let player;
+let vCam;
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -21,62 +24,16 @@ window.addEventListener("DOMContentLoaded", () => {
     canvas.width = 400;
     canvas.height = 400;
 
-    let princessIdle = new Image();
-    princessIdle.src = "./src/img/princess-idle.png";
-
-    let princessWalk = new Image();
-    princessWalk.src = "./src/img/princess-walk.png";
-
-    let princessSlash = new Image();
-    princessSlash.src = "./src/img/princess-slash.png";
-
-    let princessSlash2 = new Image();
-    princessSlash2.src = "./src/img/princess-slash2.png";
-
-    let princessRoll = new Image();
-    princessRoll.src = "./src/img/princess-roll.png";
-
-    let princessCry = new Image();
-    princessCry.src = "./src/img/princess-cry.png";
-
-    let princessBlink = new Image();
-    princessBlink.src = "./src/img/princess-blink.png";
-
-    let princessDecline = new Image();
-    princessDecline.src = "./src/img/princess-decline.png";
-
-    let princessApprove = new Image();
-    princessApprove.src = "./src/img/princess-approve.png";
-
-    let princessDown = new Image();
-    princessDown.src = "./src/img/princess-down.png";
-
-    let princessHit = new Image();
-    princessHit.src = "./src/img/princess-hit.png";
-
-    let princessThrow = new Image();
-    princessThrow.src = "./src/img/princess-throw.png";
-
-    let princessAnimationsSrc = {
-        idle: princessIdle,
-        walk: princessWalk,
-        slash: princessSlash,
-        slash2: princessSlash2,
-        roll: princessRoll,
-        cry: princessCry,
-        blink: princessBlink,
-        decline: princessDecline,
-        approve: princessApprove,
-        down: princessDown,
-        hit: princessHit,
-        throw: princessThrow
-    }
+    loadPrincessSRC();
+    loadElfSRC();
 
     player = new Player(
-        princessAnimationsSrc, // Object with all images source.
+        princessSRC, // Object with all images source.
         200 - 128, 200 - 128, // X and Y coordinates on canvas.
         64, 64 // Width and Height.
     );
+
+    vCam = new VCam(12, canvas, player);
 
     // Start game loop.
     requestAnimationFrame(gameLoopController);
@@ -124,6 +81,11 @@ function gameLoopController(time) {
 }
 
 function gameLoop() {
+
+    vCam.track(ctx, canvas, scale);
+
+    ctx.fillStyle = "blue";
+    ctx.fillRect(canvas.width / 2 - 120, canvas.height / 2 - 120, 120, 120);
 
     player.playerController(ctx);
 }

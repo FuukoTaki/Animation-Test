@@ -39,11 +39,11 @@ export class Sprite {
             slash2Back: new Animation(animationsSrc["slash2"], "slash2Back", 256, 6, 10, false),
 
             // -- ROLL --
-            rollFront: new Animation(animationsSrc["roll"], "rollFront", 0, 11, 4, false),
-            roll34: new Animation(animationsSrc["roll"], "roll34", 64, 11, 4, false),
-            rollSide: new Animation(animationsSrc["roll"], "rollSide", 128, 11, 4, false),
-            roll34Back: new Animation(animationsSrc["roll"], "roll34Back", 192, 11, 4, false),
-            rollBack: new Animation(animationsSrc["roll"], "rollBack", 256, 11, 4, false),
+            rollFront: new Animation(animationsSrc["roll"], "rollFront", 0, 10, 4, false),
+            roll34: new Animation(animationsSrc["roll"], "roll34", 64, 10, 4, false),
+            rollSide: new Animation(animationsSrc["roll"], "rollSide", 128, 10, 4, false),
+            roll34Back: new Animation(animationsSrc["roll"], "roll34Back", 192, 10, 4, false),
+            rollBack: new Animation(animationsSrc["roll"], "rollBack", 256, 10, 4, false),
 
             // -- CRY --
             cryFront: new Animation(animationsSrc["cry"], "cryFront", 0, 5, 10),
@@ -105,7 +105,7 @@ export class Sprite {
                 0 + this.currentAnimation.animationFrameCurrent * this.width, this.currentAnimation.position, // X and Y coordinates on src.
                 this.width, this.height, // Width and Height on src.
                 this.x, this.y, // X and Y on canvas.
-                this.width * 4, this.height * 4 // Width and height on canvas.
+                this.width * 2, this.height * 2 // Width and height on canvas.
             )
         }
 
@@ -118,8 +118,8 @@ export class Sprite {
                 this.currentAnimation.animationSrc, // Image source.
                 0 + this.currentAnimation.animationFrameCurrent * this.width, this.currentAnimation.position, // X and Y coordinates on src.
                 this.width, this.height, // Width and Height on src.
-                -(this.x + this.width * 4), this.y, // X and Y on canvas.
-                this.width * 4, this.height * 4 // Width and height on canvas.
+                -(this.x + this.width * 2), this.y, // X and Y on canvas.
+                this.width * 2, this.height * 2 // Width and height on canvas.
             )
 
             ctx.restore();
